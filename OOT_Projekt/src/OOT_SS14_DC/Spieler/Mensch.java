@@ -3,10 +3,17 @@ package OOT_SS14_DC.Spieler;
 import java.util.*;
 
 import OOT_SS14_DC.Spielkarton.*;
+/**
+ * 
+ * @author Dominik Meixner 1324227
+ * @author Deniz Tas 1320360
+ * @author Simon Sauerzapf 1320341
+ *
+ */
 
 /**
  * 
- * Die Klasse repräsentiert einen menachlichen Spieler
+ * Die Klasse repräsentiert einen menschlichen Spieler
  *
  */
 public class Mensch extends Spieler {
@@ -42,7 +49,7 @@ public class Mensch extends Spieler {
         try{
         auswahl = eingabe.nextInt();
         }catch(InputMismatchException ex){
-            System.out.println("Die Eingabe war ungültig versuchen sie es nochmal");
+            System.out.println("Die Eingabe war ungültig versuchen Sie es nochmal");
             return spielsteinWaehlen(feld);
         }
         
@@ -76,7 +83,7 @@ public class Mensch extends Spieler {
         if (wahlmöglichkeit%5 !=0){
             System.out.println("\n");
         }
-        System.out.println("wohin soll der Stein bewegt werden?");
+        System.out.println("Wohin soll der Stein bewegt werden?");
         @SuppressWarnings("resource")
         Scanner eingabe = new Scanner(System.in);
         
@@ -87,12 +94,12 @@ public class Mensch extends Spieler {
             auswahl = -1;
         }
         while (auswahl <= 0 || auswahl > wahlmöglichkeit) {
-            System.out.println("Es wurde kein gültiger Ziel gewählt,"
-                    + " versuchen sie es erneut");
+            System.out.println("Es wurde kein gültiges Ziel gewählt,"
+                    + " versuchen Sie es erneut");
             try{
                 auswahl = eingabe.nextInt();
             }catch(InputMismatchException ex){
-                System.out.println("Die Eingabe war ungültig versuchen sie es nochmal");
+                System.out.println("Die Eingabe war ungültig versuchen Sie es nochmal");
                 return zielWaehlen(ziel);
             }
         }

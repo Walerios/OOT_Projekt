@@ -13,8 +13,8 @@ import OOT_SS14_DC.Spielkarton.Ecke;
 /**
  * 
  * Diese Klasse ermöglicht das generieren eines individuelen Computernamens und
- * die zufälige auswahl einer Ecke und eines Symbols für alle KIs,
- * Hierdurch kann einComputer-Spieler ohne paramenter instanziert werden 
+ * die zufällige auswahl einer Ecke und eines Symbols für alle KIs,
+ * Hierdurch kann einComputer-Spieler ohne Parameter instanziert werden 
  *
  */
 public class KIgenerator {
