@@ -36,6 +36,7 @@ public class Mensch extends Spieler {
             wahlmöglichkeit++;
         }
         System.out.println("Bitte Spielstein auswählen der bewegt werden soll");
+        @SuppressWarnings("resource")
         Scanner eingabe = new Scanner(System.in);
         int auswahl;
         try{
@@ -76,6 +77,7 @@ public class Mensch extends Spieler {
             System.out.println("\n");
         }
         System.out.println("wohin soll der Stein bewegt werden?");
+        @SuppressWarnings("resource")
         Scanner eingabe = new Scanner(System.in);
         
         int auswahl;

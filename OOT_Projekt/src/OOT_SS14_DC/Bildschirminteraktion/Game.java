@@ -21,15 +21,13 @@ public class Game {
 	private Spielfeld spielfeld;
 
 	private Spieler aktuellerSpieler;
-    
+
     private Scanner eingabe;
     
     private int anzahlSpieler;
     
     private LinkedList<String> symbol = new LinkedList<String>();
     
-    private LinkedList<Ecke> gewaehlteEcken = new LinkedList<Ecke>();
-
     private LinkedList<Ecke> freieEcken = new LinkedList<Ecke>();
     
     /**
@@ -74,7 +72,11 @@ public class Game {
 	    spieler.setZielEcke(spielfeld.zielEckeSetzen(spieler.getGewaehlteEcke()));
 		return spieler;
 	}
-
+	/**
+	 * neuer Computerspieler wird erstellt
+	 * @param schwierigkeitsgrad
+	 * @return erstellter Spieler
+	 */
 	private Computer erstelleKi(int schwierigkeitsgrad) {
 	    Computer ki;
 	    switch (schwierigkeitsgrad) {
@@ -169,7 +171,12 @@ public class Game {
 	
 
 
-    //CAVE: 2 Spieler --> gegenueberliegende Ecken!
+	/**
+	 * Ecke wird aus Enumeration gewaehlt
+	 * A  B
+	 * C  D
+	 * @return gewaehlte Ecke
+	 */
 	private Ecke eckeWaehlen() {
 	  Ecke gewaehlt; 
 	  int index;
@@ -186,7 +193,11 @@ public class Game {
       
 	  return gewaehlt;
 	}
-
+	
+	/**
+	 * gibt den Index der gewaehlten Ecke in der freienEckenListe an
+	 * --> zum entfernen
+	 */
     private int indxDerEckeInListeFinden(String auswahl) {
         int index;
         switch (auswahl.toUpperCase()) {
@@ -208,13 +219,20 @@ public class Game {
         return index;
     }
 
-
+    /**
+     * 
+     * @return naechster Spieler in der Reihe
+     */
     private Spieler naechsterSpieler() {
 	    Spieler tmp = teilnehmer.poll();
 	    teilnehmer.add(tmp);
 	    return tmp;
 	}
 	
+    /**
+     * 
+     * @return zufaelliger Spieler aus der Spielerliste
+     */
 	private Spieler zufaelligerSpieler() {
 	    int zufall = (int)(Math.random()*anzahlSpieler);
 	    
@@ -227,11 +245,15 @@ public class Game {
 	    return tmp;
 	}
 	
+	/**
+	 * hier laeuft das Spiel ab (s. Kommentare)
+	 * @return Gewinner des aktuellen Spiels
+	 */
 	private Spieler spielen() {
 	    aktuellerSpieler = zufaelligerSpieler();
 	    System.out.println(aktuellerSpieler);
 	    Feld[] aktuelleSpielsteintuete; //wird sofort ueberschrieben
-	    Feld gewählterSpielstein;
+	    Feld gewaehlterSpielstein;
 	    LinkedList<Feld> alleZiele;
 	    Feld ziel;
 	    
@@ -241,48 +263,53 @@ public class Game {
 	        //der Spieler wird zuerst weitergezaehlt, damit die Abfrage
 	        //im while() funktioniert.
 	        aktuellerSpieler = naechsterSpieler();
-	        //zählt getätigte züge weiter
+	        //zaehlt getaetigte Zuege weiter
 	        aktuellerSpieler.nächsterunde();
 	        //Spielfeld gibt zurueck, wo die Steine des aktuellenSpielers sind
             aktuelleSpielsteintuete = spielfeld.getFeldvonSpieler(aktuellerSpieler);
             //aus diesen Steinen waehlt er einen zum Ziehen.
             System.out.println("aktuellerSpieler: "+ aktuellerSpieler);
-            gewählterSpielstein = aktuellerSpieler.spielsteinWaehlen(aktuelleSpielsteintuete);
-            while(gewählterSpielstein != null){
-                //alle möglichen ziele werden ermittelt
-                alleZiele = spielfeld.feldersuchen(gewählterSpielstein.getIndexZeile()
-                        ,gewählterSpielstein.getIndexSpalte());
+            gewaehlterSpielstein = aktuellerSpieler.spielsteinWaehlen
+                    (aktuelleSpielsteintuete);
+            while(gewaehlterSpielstein != null){
+                //alle moeglichen Ziele werden ermittelt
+                alleZiele = spielfeld.feldersuchen(gewaehlterSpielstein.
+                        getIndexZeile(),gewaehlterSpielstein.getIndexSpalte());
                 //die neuen Positionen werden uebergeben
                 ziel = aktuellerSpieler.zielWaehlen(alleZiele);
                 if(ziel == null){
-                    gewählterSpielstein = aktuellerSpieler.spielsteinWaehlen(aktuelleSpielsteintuete);
+                    gewaehlterSpielstein = aktuellerSpieler.
+                            spielsteinWaehlen(aktuelleSpielsteintuete);
                 }else{
- //Ersetzen durch zweimal spielerBewegen
-                    spielfeld.spielerSteinBewegen(gewählterSpielstein,ziel,aktuellerSpieler);
-                    System.out.println("ZUG: "+ (gewählterSpielstein.getIndexZeile()+1)+
-                            "/"+(gewählterSpielstein.getIndexSpalte()+1) + " => "
-                            + (ziel.getIndexZeile()+1)+"/"+(ziel.getIndexSpalte()+1));
-                    gewählterSpielstein = null;
+                    spielfeld.spielerBewegen(gewaehlterSpielstein.getIndexZeile(),
+                            gewaehlterSpielstein.getIndexSpalte(), null);
+                    spielfeld.spielerBewegen(ziel.getIndexZeile(),
+                            ziel.getIndexSpalte(), aktuellerSpieler);
+                    
+                    gewaehlterSpielstein = null;
+
                 }
             }
-            
-            
-            //neue Spielsteinpositionen werden übergeben
+              
+            //neue Spielsteinpositionen werden uebergeben
             aktuelleSpielsteintuete = spielfeld.getFeldvonSpieler(aktuellerSpieler);
             
         } while(!aktuellerSpieler.zielErreicht(aktuelleSpielsteintuete)); 
 
 	    spielfeld.printSpielfeld();
-	    System.out.println(aktuellerSpieler +" hat mit "+ aktuellerSpieler.getZuege()
-	            +" Zügen Gewonnen !");
+	    System.out.println(aktuellerSpieler + " hat mit " + 
+	            aktuellerSpieler.getZuege() + " Zügen Gewonnen !");
 	    return aktuellerSpieler;
 	}
 	
+	/**
+	 * spiel starten
+	 * @return Gewinner am Ende des Spiels
+	 */
 	public Spieler runGame() {
 		spielerErstellen();
 		System.out.println(teilnehmer);
 		Spieler gewinner = spielen();
-		
 
 		return gewinner;
 	}

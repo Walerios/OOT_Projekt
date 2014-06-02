@@ -201,12 +201,6 @@ public class Spielfeld {
 	public void spielerBewegen(int zeile, int spalte, Spieler spieler) {
 		feld[zeile][spalte].setSpieler(spieler);
 	}
-	
-//     public void spielerSteinBewegen(Feld spielstein, Feld ziel, Spieler spieler) {
-//     feld[spielstein.getIndexZeile()][spielstein.getIndexSpalte()].setSpieler(null);
-//     feld[ziel.getIndexZeile()][ziel.getIndexSpalte()].setSpieler(spieler);
-//    
-//     }
 
 	/**
 	 * <pre>
