@@ -21,22 +21,22 @@ public class Hauptmenue {
 	 */
 	public static void regelnAusgeben() {
         System.out.println("Ziel:\n"
-                + "Ziel ist es, die Spielfiguren in den gegenueberliegenden "
-                + "Bereich zu befoerdern.\nGewonnen hat derjenige, der dies "
-                + "als erstes geschafft hat.\n\n"
-                + "Spielregeln:\n"
-                + "1. Der startende Spieler wird ausgelost. \n"
-                + "2. Jeder Spieler hat pro Runde einen Spielzug, d.h. er darf "
-                + "eine Figur bewegen.\n"
-                + "3. Die Spieler wechseln sich gegen den Uhrzeigersinn ab. \n"
-                + "4. Eine Figur kann auf ein benachbartes freies Feld springen oder \n"
-                + "   beliebige benachbarte Figuren in einer Linie überspringen, \n"
-                + "   d.h. sowohl eigene als auch gegnerische Figuren. \n"
-                + "   Voraussetzung dafür ist ein freies Feld am Ende des Sprunges.\n"
-                + "5. Sind ab diesem Feld weitere Spruenge über andere Figuren moeglich, \n"
-                + "   ist es erlaubt im aktuellen Spielzug dieselbe Figur erneut springen zu lassen.\n"
-                + "6. Es sind nur Zuege in Zielrichtung und nicht in Startrichtung erlaubt. \n"
-                + "7. Ist dem Spieler kein Zug moeglich, muss er eine Runde aussetzen.\n");
+            + "Ziel ist es, die Spielfiguren in den gegenueberliegenden "
+            + "Bereich zu befoerdern.\nGewonnen hat derjenige, der dies "
+            + "als erstes geschafft hat.\n\n"
+            + "Spielregeln:\n"
+            + "1. Der startende Spieler wird ausgelost. \n"
+            + "2. Jeder Spieler hat pro Runde einen Spielzug, d.h. er darf "
+            + "eine Figur bewegen.\n"
+            + "3. Die Spieler wechseln sich gegen den Uhrzeigersinn ab. \n"
+            + "4. Eine Figur kann auf ein benachbartes freies Feld springen oder \n"
+            + "   beliebige benachbarte Figuren in einer Linie überspringen, \n"
+            + "   d.h. sowohl eigene als auch gegnerische Figuren. \n"
+            + "   Voraussetzung dafür ist ein freies Feld am Ende des Sprunges.\n"
+            + "5. Sind ab diesem Feld weitere Spruenge über andere Figuren moeglich, \n"
+            + "   ist es erlaubt im aktuellen Spielzug dieselbe Figur erneut springen zu lassen.\n"
+            + "6. Es sind nur Zuege in Zielrichtung und nicht in Startrichtung erlaubt. \n"
+            + "7. Ist dem Spieler kein Zug moeglich, muss er eine Runde aussetzen.\n");
 
 	}
 
@@ -73,7 +73,7 @@ public class Hauptmenue {
 	 */
 	public static void printMenue() {
 	    System.out.println( "~ ~ ~ ~ HAUPTMENU ~ ~ ~ ~ \n" +
-	            "~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~        \n \n" +
+	            " ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~        \n \n" +
 
 	            "------------------------------    \n" +
 	            "Geben Sie ein:                 \n" +
@@ -87,7 +87,7 @@ public class Hauptmenue {
 	            "------------------------------    \n" +
 	            "beliebige Taste:               \n" +   
 	            "------------------------------    \n" +
-	            "Spiel starten                  \n \n" +
+	            "Halma-Spiel starten                  \n \n" +
 	                
 	            " ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     \n" +
 	            "~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
