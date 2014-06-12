@@ -157,7 +157,7 @@ public abstract class Spieler {
 	 * Name des aktuellen Spieler wird ausgelesen.
 	 */
     public String toString() {
-        return "Spieler: " + name;
+        return name;
     }
     
     /**

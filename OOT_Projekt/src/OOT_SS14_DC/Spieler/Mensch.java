@@ -3,6 +3,7 @@ package OOT_SS14_DC.Spieler;
 import java.util.*;
 
 import OOT_SS14_DC.Spielkarton.*;
+
 /**
  * 
  * @author Dominik Meixner 1324227
@@ -14,19 +15,21 @@ import OOT_SS14_DC.Spielkarton.*;
 /**
  * 
  * Die Klasse repräsentiert einen menschlichen Spieler
- *
+ * 
  */
 public class Mensch extends Spieler {
 
-    /**<pre>Konstruktor menschlichen Spieler</pre>
+    /**
+     * <pre>
+     * Konstruktor menschlichen Spieler
+     * </pre>
      * 
      */
-    
+
     public Mensch(String Name, Ecke ecke, String symbol) {
         super(Name, ecke, symbol);
     }
 
-    
     /**
      * @see Spieler
      */
@@ -35,9 +38,10 @@ public class Mensch extends Spieler {
         int wahlmöglichkeit = 2;
         System.out.print("\n1 = AUSSETZEN\t");
         for (Feld iterator : feld) {
-            System.out.print(wahlmöglichkeit +" = "+  (iterator.getIndexZeile() + 1)
-                    + "/"+ (iterator.getIndexSpalte() +1)+"  \t");
-            if(wahlmöglichkeit%5 == 0){
+            System.out.print(wahlmöglichkeit + " = "
+                    + (iterator.getIndexZeile() + 1) + "/"
+                    + (iterator.getIndexSpalte() + 1) + "  \t");
+            if (wahlmöglichkeit % 5 == 0) {
                 System.out.println("\n");
             }
             wahlmöglichkeit++;
@@ -46,18 +50,21 @@ public class Mensch extends Spieler {
         @SuppressWarnings("resource")
         Scanner eingabe = new Scanner(System.in);
         int auswahl;
-        try{
-        auswahl = eingabe.nextInt();
-        }catch(InputMismatchException ex){
-            System.out.println("Die Eingabe war ungültig versuchen Sie es nochmal");
+        try {
+            auswahl = eingabe.nextInt();
+            if (auswahl < 1 || auswahl > feld.length+1) {
+                throw new InputMismatchException();
+            }
+        } catch (InputMismatchException ex) {
+            System.out
+                    .println("Die Eingabe war ungültig versuchen Sie es nochmal");
             return spielsteinWaehlen(feld);
         }
-        
-        
-        if(auswahl == 1){
+
+        if (auswahl == 1) {
             return null;
-        }else{
-            return feld[auswahl-2];
+        } else {
+            return feld[auswahl - 2];
         }
     }
 
@@ -66,52 +73,42 @@ public class Mensch extends Spieler {
      */
     @Override
     public Feld zielWaehlen(LinkedList<Feld> ziel) {
-    	
-        
-        
+
         int wahlmöglichkeit = 2;
         System.out.print("\n1 = NEUER SPIELSTEIN\t");
         for (Feld iterator : ziel) {
-            System.out.print(wahlmöglichkeit +" = "+  (iterator.getIndexZeile() + 1)
-                + "/"+ (iterator.getIndexSpalte()+1)+"  \t");
+            System.out.print(wahlmöglichkeit + " = "
+                    + (iterator.getIndexZeile() + 1) + "/"
+                    + (iterator.getIndexSpalte() + 1) + "  \t");
             wahlmöglichkeit++;
-        if(wahlmöglichkeit%5 == 0){
-            System.out.println("\n");
+            if (wahlmöglichkeit % 5 == 0) {
+                System.out.println("\n");
             }
-           
+
         }
-        if (wahlmöglichkeit%5 !=0){
+        if (wahlmöglichkeit % 5 != 0) {
             System.out.println("\n");
         }
         System.out.println("Wohin soll der Stein bewegt werden?");
         @SuppressWarnings("resource")
         Scanner eingabe = new Scanner(System.in);
-        
+
         int auswahl;
-        try{
+        try {
             auswahl = eingabe.nextInt();
-        }catch(InputMismatchException ex){
-            auswahl = -1;
-        }
-        while (auswahl <= 0 || auswahl > wahlmöglichkeit) {
-            System.out.println("Es wurde kein gültiges Ziel gewählt,"
-                    + " versuchen Sie es erneut");
-            try{
-                auswahl = eingabe.nextInt();
-            }catch(InputMismatchException ex){
-                System.out.println("Die Eingabe war ungültig versuchen Sie es nochmal");
-                return zielWaehlen(ziel);
+            if (auswahl < 1 || auswahl > ziel.size()+1) {
+                throw new InputMismatchException();
             }
+        } catch (InputMismatchException ex) {
+            System.out
+                    .println("Die Eingabe war ungültig versuchen Sie es nochmal");
+            return zielWaehlen(ziel);
         }
-        
-        
-        if(auswahl == 1){
+
+        if (auswahl == 1) {
             return null;
-        }else{
-            return ziel.get(auswahl-2);
+        } else {
+            return ziel.get(auswahl - 2);
         }
-        
     }
-       
-        
 }
